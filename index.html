@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- PWA Meta Tags -->
+    <meta name="application-name" content="SwiftEdit">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="SwiftEdit is a lightweight, offline-capable code editor for HTML, CSS, and JavaScript.">
+
+    <!-- Favicon and Icons -->
+    <link rel="icon" href="icons/icon-512.png" sizes="512x512">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    
+    <!-- Open Graph Meta Tags (for social sharing) -->
+    <meta property="og:title" content="SwiftEdit">
+    <meta property="og:description" content="Lightweight, offline-capable code editor for HTML, CSS, and JavaScript.">
+    <meta property="og:image" content="icons/icon-512.png">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SwiftEdit">
+    <meta name="twitter:description" content="Lightweight, offline-capable code editor for HTML, CSS, and JavaScript.">
+    <meta name="twitter:image" content="icons/icon-512.png">
+
+    <!-- Page Title -->
+    <title>SwiftEdit</title>
+
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-storage.js"></script>
+    <!-- External Scripts and Styles -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.24.0/min/vs/loader.js"></script>
+    
+    <!-- Monaco Editor Configuration -->
+    <script>
+        require.config({ paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.24.0/min/vs' } });
+    </script>
+    <script src="app.js" defer></script>
+</head>
+
+<body>
+    <div class="menu">
+        <button id="menuButton">Menu</button>
+        <div id="menuOptions" class="menu-options">
+            <button id="downloadBtn">Download Code (ZIP)</button>
+            <button id="openFileBtn">Open File</button>
+            <button id="shareBtn">Share</button>
+            <button id="toggleWrap" class="active">Line Wrap: ON</button>
+            <button id="toggleLocalStorage" class="active">Local Storage: ON</button>
+            <button id="reloadPreviewBtn">Reload Preview</button>
+<button id="publishBtn">Publish as App</button>
+            <label for="consoleToggle">Console</label>
+        </div>
+    </div>
+
+    <div class="tabs">
+        <button class="tab-button active" data-target="htmlEditor">HTML</button>
+        <button class="tab-button" data-target="cssEditor">CSS</button>
+        <button class="tab-button" data-target="jsEditor">JavaScript</button>
+    </div>
+
+    <input type="checkbox" class="consoleToggle" id="consoleToggle">
+    
+    <div class="console-container">
+        <h3>Console Output</h3>
+        <div id="customConsole"></div>
+    </div>
+
+    <div class="editor-container">
+        <div id="htmlEditor" class="editor active"></div>
+        <div id="cssEditor" class="editor"></div>
+        <div id="jsEditor" class="editor"></div>
+    </div>
+
+    <div class="samsung-phone" id="phone">
+        <div class="screen">
+            <iframe id="preview"></iframe>
+        </div>
+        <button class="fullscreen-button" id="fullscreenBtn">
+            <i class="bi bi-arrows-fullscreen"></i>
+        </button>
+    </div>
+
+   <!-- Publish Modal -->
+<div id="publishModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Publish Your App</h2>
+        <form id="publishForm">
+            <input type="file" id="thumbnailInput" accept="image/*" required>
+            <input type="text" id="appTitle" placeholder="App Title" required>
+            <textarea id="appDescription" placeholder="App Description" required></textarea>
+            <button type="submit">Submit for Review</button>
+        </form>
+    </div>
+</div>
+    <input type="file" id="fileInput" style="display: none;" multiple>
+       <script>
+      // Firebase configuration
+const bleeprFirebase = {
+    apiKey: "AIzaSyD-GCRFbpLQwU55kShhS-DtNSNOPEySQ_g",
+    authDomain: "octen-29d12.firebaseapp.com",
+    databaseURL: "https://octen-29d12-default-rtdb.firebaseio.com",
+    projectId: "octen-29d12",
+    storageBucket: "octen-29d12.appspot.com",
+    messagingSenderId: "1095439842170",
+    appId: "1:1095439842170:web:da0dc8a2c414c60f33f4c3",
+    measurementId: "G-483MYXKNVL"
+};
+
+// Initialize Firebase
+firebase.initializeApp(bleeprFirebase);
+
+      // Initialize Firestore and Storage
+      var db = firebase.firestore();
+      var storage = firebase.storage();
+      
+    
+</script>
+<script src="scripts.js"></script>
+    <!-- Your custom script -->
+ 
+</body>
+</html>
